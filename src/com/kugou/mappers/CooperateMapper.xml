@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kugou.dao.CooperateDao">
+	<sql id="allcooperate">
+		select
+		CooperateID,CooperateName,CooperateURL
+	</sql>
+	<resultMap type="Cooperate" id="CooperateResultMap">
+		<result column="CooperateID" property="cooperateID" />
+		<result column="CooperateName" property="cooperateName" />
+		<result column="CooperateURL" property="cooperateURL" />
+	</resultMap>
+	<!-- 查询音乐盛典 -->
+	<select id="selectAllCooperateInfo" resultMap="CooperateResultMap">
+		<include refid="allcooperate" />
+		from cooperate
+	</select>
+	
+</mapper>

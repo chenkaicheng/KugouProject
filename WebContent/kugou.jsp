@@ -137,9 +137,9 @@
 			<script type="text/javascript" src="js/Change.js"></script>
 				<div class="banner_1" >
 						<div id="banner">
-							 <c:forEach items="${list}" var="img" varStatus="status">
+							 <c:forEach items="${list }" var="img" varStatus="status">
 							 	<a href="#">
-							 		<img src="${img.imgURL}"/>
+							 		<img src="${img.imgURL }"/>
 							 	</a>
 							 </c:forEach>
 						<div id = "slide">
@@ -193,20 +193,20 @@
 						</div>
 						<div  class="wrap_1_2_3">
 							<table class="wrap_1_2_3_1" >
-								<c:forEach items="${song}" begin = "0" end = "5" var="wrap" varStatus="status">
-									<tr  <c:if test="${status.index % 2 != 0}">class="wrap_1_2_3_1_1"</c:if><c:if test="${status.index % 2 == 0}">class="wrap_1_2_3_1_2"</c:if>>
+								<c:forEach items="${song }" begin = "0" end = "5" var="wrap" varStatus="status">
+									<tr  <c:if test="${status.index % 2 != 0 }">class="wrap_1_2_3_1_1"</c:if><c:if test="${status.index % 2 == 0 }">class="wrap_1_2_3_1_2"</c:if>>
 										<td style="width: 340px;height: 55px;margin: 0px;padding: 0px;">
 											<div style="float: left;width: 50px;height: 53px;line-height: 50px;text-align: center;font-weight: bold">
-												${status.index+1}
+												${status.index+1 }
 											</div>
 											<div style="float: left;width: 180px;">
-												<div style="float: left;width: 180px;color:#282828;font-size:12px;height: 30px;line-height: 30px;">${wrap.songName}</div>
+												<div style="float: left;width: 180px;color:#282828;font-size:12px;height: 30px;line-height: 30px;">${wrap.songName }</div>
 												<div style="float: left;width: 180px;color:#C3C9CA;font-size:12px;">
-												${wrap.songWords}
+												${wrap.songWords }
 												</div>
 											</div>
 											<div style="float: left;width: 70px;height:53px;line-height: 50px;font-size:12px;text-align: center; ">
-												${wrap.songSinger}
+												${wrap.songSinger }
 											</div>
 										</td>
 									</tr>
@@ -214,19 +214,19 @@
 							</table>
 							<table class="wrap_1_2_3_2" >
 								<c:forEach items="${song }" begin = "0" end = "5" var="wrap" varStatus="status">
-									<tr  <c:if test="${status.index % 2 != 0}">class="wrap_1_2_3_1_1"</c:if><c:if test="${status.index % 2 == 0}">class="wrap_1_2_3_1_2"</c:if>>
+									<tr  <c:if test="${status.index % 2 != 0 }">class="wrap_1_2_3_1_1"</c:if><c:if test="${status.index % 2 == 0 }">class="wrap_1_2_3_1_2"</c:if>>
 										<td style="width: 340px;height: 55px;margin: 0px;padding: 0px;cursor: pointer;">
 											<div style="float: left;width: 50px;height: 53px;line-height: 50px;text-align: center;font-weight: bold">
-												${status.index+1}
+												${status.index+1 }
 											</div>
 											<div style="float: left;width: 180px;">
-												<div style="float: left;width: 180px;color:#282828;font-size:12px;height: 30px;line-height: 30px;">${wrap.songName}</div>
+												<div style="float: left;width: 180px;color:#282828;font-size:12px;height: 30px;line-height: 30px;">${wrap.songName }</div>
 												<div style="float: left;width: 180px;color:#C3C9CA;font-size:12px;">
-												${wrap.songWords}
+												${wrap.songWords }
 												</div>
 											</div>
 											<div style="float: left;width: 70px;height:53px;line-height: 50px;font-size:12px;text-align: center; ">
-												${wrap.songSinger}
+												${wrap.songSinger }
 											</div>
 										</td>
 									</tr>
@@ -320,15 +320,15 @@
 						</div>
 						<div class="hot_1_1_2">
 							<table id="hot1" border="0" cellpadding="0" cellspacing="0">
-							<c:forEach items="${songHeat}" var="song" begin="0"  end="9" varStatus="status">
-								<tr  <c:if test="${status.index % 2 != 0}">class="hot_1_1_2_8"</c:if><c:if test="${status.index % 2 == 0}">class="hot_1_1_2_9"</c:if>>
+							<c:forEach items="${songHeat }" var="song" begin="0"  end="9" varStatus="status">
+								<tr  <c:if test="${status.index % 2 != 0 }">class="hot_1_1_2_8"</c:if><c:if test="${status.index % 2 == 0 }">class="hot_1_1_2_9"</c:if>>
 									<td>
-									<a href="#" title="${song.songName}">
+									<a href="#" title="${song.songName }">
 										<span class="hot_1_1_2_1">
-											${status.index+1}
+											${status.index+1 }
 										</span>
 										<span class="hot_1_1_2_2">
-											${song.songName}
+											${song.songName }
 										</span>
 									</a>
 									</td>
@@ -351,16 +351,16 @@
 						</div>
 						<div class="hot_1_2_2">
 							<div class="hot_1_1_2">
-								<table id="hot1" border="0" cellpadding="0" cellspacing="0">
-								<c:forEach items="${songHeat}" var="song" begin="0"  end="9" varStatus="status">
-									<tr  <c:if test="${status.index % 2 != 0}">class="hot_1_1_2_8"</c:if><c:if test="${status.index % 2 == 0}">class="hot_1_1_2_9"</c:if>>
+								<table id="hot2" border="0" cellpadding="0" cellspacing="0">
+								<c:forEach items="${songHeat }" var="song" begin="0"  end="9" varStatus="status">
+									<tr  <c:if test="${status.index % 2 != 0 }">class="hot_1_1_2_8"</c:if><c:if test="${status.index % 2 == 0 }">class="hot_1_1_2_9"</c:if>>
 										<td>
-										<a href="#" title="${song.songName}">
+										<a href="#" title="${song.songName }">
 											<span class="hot_1_1_2_1">
-												${status.index+1}
+												${status.index+1 }
 											</span>
 											<span class="hot_1_1_2_2">
-												${song.songName}
+												${song.songName }
 											</span>
 										</a>
 										</td>
@@ -421,19 +421,19 @@
 					<div class="party_1_2">
 						<div class="party_1_2_1">
 							<ul>
-								<c:forEach items="${songRadio}" var="song" begin="0"  end="14" varStatus="status">
+								<c:forEach items="${songRadio }" var="song" begin="0"  end="14" varStatus="status">
 								
 									<li>
 									
-										<a href="#" title="${song.songWords}">
-											<span class="party_1_2_1_1">
-												<img src="${song.songImg}"/>
+										<a href="#" title="${song.songWords }">
+											<span class="party_1_2_1_1" style="display: block;">
+												<img src="${song.songImg }"/>
 											</span>
-											<em>${song.songName}
+											<em>${song.songName }
 												<b></b>
 											</em>
-											<span class="party_1_2_1_2">
-												${song.songSinger}
+											<span class="party_1_2_1_2" style="display: block;">
+												${song.songSinger }
 											</span>
 										</a>
 									</li>
@@ -461,26 +461,26 @@
 								<li class="party_2_2_1_1">
 									<span class="party_2_2_1_1_1"></span>
 									<span class="party_2_2_1_1_2">
-										<a href="#" title="${original.songName}">
-											<img src="${original.songImg}"/>
+										<a href="#" title="${original.songName }">
+											<img src="${original.songImg }"/>
 										</a>
 									</span>
 									<span class="party_2_2_1_1_3">
-										<i>${original.songName}</i>
+										<i>${original.songName }</i>
 									</span>
 									<span class="party_2_2_1_1_4">
-										<i>${original.songWords}</i>
+										<i>${original.songWords }</i>
 									</span>
 									<div class="party_2_2_1_1_5">
 										<span class="party_2_2_1_1_5_1">
-											${original.songSinger}
+											${original.songSinger }
 										</span>
 										<span class="party_2_2_1_1_5_2">
 											<a href="#" title="更多">更多</a>
 										</span>
 									</div>
 									<div class="party_2_2_1_1_6">
-										<a href="#" title="${original.songURL}">${original.songURL}</a>
+										<a href="#" title="${original.songURL }">${original.songURL }</a>
 										<span></span>
 									</div>
 								</li>
@@ -488,15 +488,15 @@
 							<c:forEach items="${songOriginal}" var="original" begin="1" end="4" varStatus="status">
 								<li class="party_2_2_1_2">
 									<span>
-										${status.index+1}
+										${status.index+1 }
 									</span>
-									<a href="#" title="${original.songName}">
-										<img src="${original.songImg}"/>
+									<a href="#" title="${original.songName }">
+										<img src="${original.songImg }"/>
 									</a>
 									<div class="party_2_2_1_2_1">
-										<a href="#" title="${original.songName}">${original.songName}</a>
+										<a href="#" title="${original.songName }">${original.songName }</a>
 										<div>
-											${original.songWords}
+											${original.songWords }
 										</div>
 									</div>
 								</li>
@@ -515,14 +515,14 @@
 						<div class="MV_1_1_3"><a href="#" title="更多">更多</a></div>
 					</div>
 					<div class="MV_1_2">
-						<c:forEach items="${songMV}" var="MV" varStatus="status">
+						<c:forEach items="${songMV }" var="MV" varStatus="status">
 							<div class="MV_1_2_1">
 								<a class="MV_1_2_1_1">
-									<img src="${MV.songImg}"/>
+									<img src="${MV.songImg }"/>
 									<b></b>
 									<i></i>
 								</a>
-								<a class="MV_1_2_1_2">${MV.songName}</a>
+								<a class="MV_1_2_1_2">${MV.songName }</a>
 							</div>
 						</c:forEach>
 					</div>
@@ -560,8 +560,8 @@
 					</div>
 				</div>
 				<div class="partner_2">
-					<c:forEach items = "${cooperate}" var="co" varStatus="status">
-						<a href="${co.cooperateURL}" title="${co.cooperateName}">${co.cooperateName}</a>
+					<c:forEach items = "${cooperate }" var="co" varStatus="status">
+						<a href="${co.cooperateURL }" title="${co.cooperateName }">${co.cooperateName }</a>
 					</c:forEach>
 				</div>
 			</div>
