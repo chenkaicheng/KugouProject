@@ -1,6 +1,8 @@
 package com.kugou.service.Impl;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,13 @@ public class SongServiceImpl implements SongService
 	public List<Song> selectAllSongMV()
 	{
 		return songDao.selectAllSongMV();
+	}
+
+	//搜索查询
+	@Override
+	public List<Song> selectAllSongInfo(Map<String, Object> map)
+	{
+		return songDao.selectAllSongInfo(map);
 	}
 
 

@@ -45,4 +45,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from song where AreaID=14
 	</select>
 	
+	<!-- 搜索查询-->
+	<select id="selectAllSongInfo" resultMap="SongResultMap" parameterType="java.util.Map">
+		<include refid="allsong" />
+		from Song 
+		<where>
+			<if test="show!=null and show!='' ">
+				and show like '%${show}%'
+			</if>
+		</where>
+	</select>
 </mapper>

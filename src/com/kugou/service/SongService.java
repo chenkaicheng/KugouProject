@@ -1,6 +1,8 @@
 package com.kugou.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.kugou.pojo.Song;
 
 
@@ -20,5 +22,8 @@ public interface SongService
 	
 	//MV热播
 	public List<Song> selectAllSongMV();
+	
+	//搜索查询
+	public List<Song> selectAllSongInfo(Map<String, Object> map);
 }
 

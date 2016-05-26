@@ -9,8 +9,8 @@
 </head>
 <body>
   <center>
-     <c:forEach items="${list}" var="SongList">
-        <h4>${SongList.SongName}</h4>
+     <c:forEach items="${list}" var="song">
+        <h4>${song.SongName}</h4>
      </c:forEach>
   </center>
 </body>

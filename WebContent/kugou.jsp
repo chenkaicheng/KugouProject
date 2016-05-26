@@ -62,10 +62,11 @@
 			<div class="logo">
 				<div class="logo_1"></div>
 				<div class="logo_2">
-					<form action="SearchSong" method="post">
+					<form action="k/s" method="get">
 					<span>
-						<input id="logo1" type="text" value="搜歌手、歌曲" name="show" class="logo_2_1"/>
+						<input id="logo1" type="text" value="搜歌手、歌曲" id="show" name="show" class="logo_2_1"/>
 						<input type="submit" value=""class="logo_2_2"/>
+						<!-- <a href="k/s?show=的" class="logo_2_2">搜索</a> -->
 					</span>
 					</form>
 				</div>
