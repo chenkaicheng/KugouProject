@@ -15,7 +15,7 @@ import com.kugou.service.SongService;
 import com.kugou.util.PackContents;
 
 @Controller
-@RequestMapping("/song")
+@RequestMapping("/k")
 public class SongHandle
 {
 	@Resource
@@ -25,7 +25,7 @@ public class SongHandle
 	@Resource
 	private ImgService imgService;
 
-	@RequestMapping("/selectAllSong")
+	@RequestMapping("/g")
 	public String selectAllSongs(Map<String, Object> map)
 	{
 		// 音乐盛典
