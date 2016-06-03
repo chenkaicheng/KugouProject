@@ -62,18 +62,17 @@
 			<div class="logo">
 				<div class="logo_1"></div>
 				<div class="logo_2">
-					<form action="k/s" method="get">
+					<form action="k/s" method="post">
 					<span>
 						<input id="logo1" type="text" value="搜歌手、歌曲" id="show" name="show" class="logo_2_1"/>
 						<input type="submit" value=""class="logo_2_2"/>
-						<!-- <a href="k/s?show=的" class="logo_2_2">搜索</a> -->
 					</span>
 					</form>
 				</div>
 				<div class="logo_3">
 					<div class = "logo_3_1">
 					<c:if test="${user != null}">
-						<span class="logo_3_1_0">用户<a href="#" title="点击进去安全设置" style="color:red">${user.userName}</a>已登陆成功！</span>
+						<span class="logo_3_1_0">用户<a href="#" title="点击进去安全设置" style="color:red"></a>已登陆成功！</span>
 					</c:if>
 					<c:if test="${user == null}">
 						<span class = "logo_3_1_1">

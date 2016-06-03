@@ -10,7 +10,7 @@
 <body>
   <center>
      <c:forEach items="${list}" var="song">
-        <h4>${song.SongName}</h4>
+        <h4>${song.songName}</h4>
      </c:forEach>
   </center>
 </body>

@@ -20,38 +20,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="allsong" />
 		from song where AreaID=11
 	</select>
-	
+
 	<!-- 查询热榜Top10 -->
 	<select id="selectAllSongHeat" resultMap="SongResultMap">
 		<include refid="allsong" />
 		from song where AreaID=9
 	</select>
-	
+
 	<!-- 查询最新歌曲 -->
 	<select id="selectAllSong" resultMap="SongResultMap">
 		<include refid="allsong" />
 		from song where AreaID=10
 	</select>
-	
-	<!-- 查询原创和美女-->
+
+	<!-- 查询原创和美女 -->
 	<select id="selectAllSongOriginal" resultMap="SongResultMap">
 		<include refid="allsong" />
 		from song where AreaID=12
 	</select>
-	
-	<!-- 查询MV热播-->
+
+	<!-- 查询MV热播 -->
 	<select id="selectAllSongMV" resultMap="SongResultMap">
 		<include refid="allsong" />
 		from song where AreaID=14
 	</select>
-	
-	<!-- 搜索查询-->
-	<select id="selectAllSongInfo" resultMap="SongResultMap" parameterType="java.util.Map">
+
+	<!-- 搜索查询 -->
+	<select id="selectAllSongInfo" resultMap="SongResultMap" parameterType="java.lang.String">
 		<include refid="allsong" />
 		from Song 
 		<where>
-			<if test="show!=null and show!='' ">
-				and show like '%${show}%'
+			<if test="SongName!=null and SongName!='' ">
+				SongName like '%${SongName}%'
 			</if>
 		</where>
 	</select>

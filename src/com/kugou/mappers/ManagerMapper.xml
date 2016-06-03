@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kugou.dao.ManagerDao">
+	<sql id="managerAll">
+		id,username,email,password,rpassword
+	</sql>
+	<resultMap type="Manager" id="managerMap">
+		<result column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="email" property="email"/>
+		<result column="password" property="password"/>
+		<result column="rpassword" property="rpassword"/>
+	</resultMap>
+	
+	<select id="login" resultMap="managerMap" resultType="Manager">
+		select
+		username,password
+		from manager where username=#{username} and password=#{password}
+	</select>
+	<select id="findAllManager" resultType="Manager">
+		select
+		<include refid="managerAll"/>
+		from manager
+	</select>
+	<insert id="insertManager" parameterType="Manager">
+		insert into manager values(null,#{username},#{email},#{password},#{rpassword})
+	</insert>
+</mapper>
