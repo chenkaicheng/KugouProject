@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from Song 
 		<where>
 			<if test="SongName!=null and SongName!='' ">
-				SongName like '%${SongName}%'
+				SongName  like CONCAT('%',#{SongName  ,jdbcType=VARCHAR},'%' ) 
 			</if>
 		</where>
 	</select>
