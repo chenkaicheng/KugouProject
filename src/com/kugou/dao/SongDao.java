@@ -1,6 +1,7 @@
 package com.kugou.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +26,7 @@ public interface SongDao
 
 	// 搜索查询
 	public List<Song> selectAllSongInfo(@Param(value = "SongName") String show);
+
+	// 所有
+	public List<Map<String, Object>> selectAllSongs(Map<String, Object> map);
 }

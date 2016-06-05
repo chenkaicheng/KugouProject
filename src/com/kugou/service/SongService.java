@@ -23,4 +23,9 @@ public interface SongService
 
 	// 搜索查询
 	public List<Song> selectAllSongInfo(String show);
+
+	/*
+	 * // 所有 public List<Map<String, Object>> selectAllSongs(Map<String, Object>
+	 * map);
+	 */
 }

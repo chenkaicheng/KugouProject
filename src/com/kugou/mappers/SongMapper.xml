@@ -46,13 +46,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 搜索查询 -->
-	<select id="selectAllSongInfo" resultMap="SongResultMap" parameterType="java.lang.String">
+	<select id="selectAllSongInfo" resultMap="SongResultMap"
+		parameterType="java.lang.String">
 		<include refid="allsong" />
-		from Song 
+		from Song
 		<where>
 			<if test="SongName!=null and SongName!='' ">
-				SongName  like CONCAT('%',#{SongName  ,jdbcType=VARCHAR},'%' ) 
+				SongName like CONCAT('%',#{SongName
+				,jdbcType=VARCHAR},'%' )
 			</if>
 		</where>
+	</select>
+
+	<!-- 所有 -->
+	<select id="selectAllSongs" resultMap="SongResultMap" parameterType="java.util.Map" resultType="java.util.Map">
+		<include refid="allsong" />
+		from song
 	</select>
 </mapper>

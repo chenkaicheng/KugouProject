@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kugou.pojo.Cooperate;
 import com.kugou.pojo.Img;
@@ -16,6 +20,7 @@ import com.kugou.pojo.Song;
 import com.kugou.service.CooperateService;
 import com.kugou.service.ImgService;
 import com.kugou.service.SongService;
+import com.kugou.service.SongService1;
 import com.kugou.util.PackContents;
 
 @Controller
@@ -28,6 +33,14 @@ public class SongHandle
 	private CooperateService cooperateService;
 	@Resource
 	private ImgService imgService;
+
+	private SongService1 songService1;
+
+	@Autowired
+	public void setSongService1(SongService1 songService1)
+	{
+		this.songService1 = songService1;
+	}
 
 	@RequestMapping("/g")
 	public String selectAllSongs(Map<String, Object> map)
@@ -65,5 +78,14 @@ public class SongHandle
 		List<Song> list = songService.selectAllSongInfo(show);
 		map.put("list", list);
 		return PackContents.REGISTER_PAGE;
+	}
+
+	// 搜索查询
+	@RequestMapping(value = "/t", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String getUserList(HttpServletRequest request, HttpServletResponse response)
+	{
+		response.setCharacterEncoding("application/json; charset=utf-8");
+		return songService1.selectAllSongs(request);
 	}
 }

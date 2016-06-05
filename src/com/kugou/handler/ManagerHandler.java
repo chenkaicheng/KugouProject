@@ -17,7 +17,7 @@ public class ManagerHandler
 	@Resource
 	private ManagerService managerService;
 
-	// 注册
+	// 登录
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Manager manager, HttpServletRequest request)
 	{
