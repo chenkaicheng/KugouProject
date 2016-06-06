@@ -27,6 +27,12 @@ public interface SongDao
 	// 搜索查询
 	public List<Song> selectAllSongInfo(@Param(value = "SongName") String show);
 
-	// 所有
-	public List<Map<String, Object>> selectAllSongs(Map<String, Object> map);
+	// 表记录总行数
+	public Integer iTotalRecords();
+
+	// 表搜索记录总行数
+	public Integer iTotalDisplayRecords(Map<String, Object> params);
+
+	// datatables分页查询
+	public List<Map<String, String>> selectForSearch(Map<String, Object> params);
 }

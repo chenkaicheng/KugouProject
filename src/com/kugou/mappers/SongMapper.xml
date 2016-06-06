@@ -58,9 +58,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-	<!-- 所有 -->
-	<select id="selectAllSongs" resultMap="SongResultMap" parameterType="java.util.Map" resultType="java.util.Map">
-		<include refid="allsong" />
-		from song
-	</select>
+	<!-- 表记录总行数 -->
+	<select id="iTotalRecords" resultType="java.lang.Integer">
+  	select count(SongID) from song
+  </select>
+  
+  <!-- 表搜索记录总行数 -->
+   <select id="iTotalDisplayRecords" resultType="java.lang.Integer">
+  	select count(s.SongID) from song s
+  	<if test="sSearch != '' " >
+  		<bind name="s_Search" value="sSearch"/>
+  		where
+  		CONCAT(s.SongID,s.SongName) like CONCAT('%','${s_Search}','%')
+    </if>
+  </select>
+  
+  <!-- datatables分页查询 -->
+  <select id="selectForSearch" resultMap="SongResultMap">
+  	select s.SongID ,s.SongName from song s
+  	<if test="sSearch != '' " >
+  		<bind name="s_Search" value="sSearch"/>
+  		where
+        CONCAT(s.SongID,s.SongName) like CONCAT('%','${s_Search}','%')
+    </if>
+    <if test="asc != null ">
+    	order by ${asc} asc
+    </if>
+    <if test="desc != null ">
+    	order by ${desc} desc
+    </if>
+   <if test="iDisplayStart != null" >
+  		limit #{iDisplayStart,jdbcType=INTEGER},#{pageDisplayLength,jdbcType=INTEGER}
+    </if>
+  </select>
+  
 </mapper>

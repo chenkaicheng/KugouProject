@@ -1,6 +1,8 @@
 package com.kugou.service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.kugou.dao.SongDao;
 import com.kugou.pojo.Song;
 import com.kugou.service.SongService;
+import com.kugou.util.DataTables;
+
+import net.sf.json.JSONArray;
 
 @Service("songService")
 public class SongServiceImpl implements SongService
@@ -57,6 +62,27 @@ public class SongServiceImpl implements SongService
 	public List<Song> selectAllSongInfo(String show)
 	{
 		return songDao.selectAllSongInfo(show);
+	}
+
+	// 所有
+	@Override
+	public String selectAllSongs(DataTables dataTables)
+	{
+		String[] columns =
+		{ "songID", "songName" };// 页面对应的数据列
+		Map<String, Object> params = new HashMap<String, Object>();// 传给Mapper的参数
+		params.put("sSearch", dataTables.getSSearch());
+		params.put("iDisplayStart", Integer.parseInt(dataTables.getiDisplayStart()));
+		params.put("pageDisplayLength", Integer.parseInt(dataTables.getPageDisplayLength()));
+		params.put(dataTables.getsSortDir_0(), columns[Integer.parseInt(dataTables.getiSortCol_0())]);// 获取需要的列和对应的排序方式
+
+		List<Map<String, String>> logList = this.songDao.selectForSearch(params);// 返回的结果集
+		dataTables.setiTotalDisplayRecords(this.songDao.iTotalDisplayRecords(params));// 搜索结果总行数
+		dataTables.setiTotalRecords(this.songDao.iTotalRecords());// 所有记录总行数
+		dataTables.setAaData(logList);
+
+		String logsListJSON = JSONArray.fromObject(dataTables).toString();
+		return logsListJSON.substring(1, (logsListJSON.length() - 1));// 截取掉两端的[]
 	}
 
 }

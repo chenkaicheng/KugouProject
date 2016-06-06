@@ -3,6 +3,7 @@ package com.kugou.service;
 import java.util.List;
 
 import com.kugou.pojo.Song;
+import com.kugou.util.DataTables;
 
 public interface SongService
 {
@@ -24,8 +25,7 @@ public interface SongService
 	// 搜索查询
 	public List<Song> selectAllSongInfo(String show);
 
-	/*
-	 * // 所有 public List<Map<String, Object>> selectAllSongs(Map<String, Object>
-	 * map);
-	 */
+	// 所有
+	public String selectAllSongs(DataTables dataTables);
+
 }
