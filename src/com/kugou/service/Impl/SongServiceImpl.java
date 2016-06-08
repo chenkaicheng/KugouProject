@@ -59,22 +59,24 @@ public class SongServiceImpl implements SongService
 
 	// 搜索查询
 	@Override
-	public List<Song> selectAllSongInfo(String show)
+	public List<Song> selectAllSongInfo()
 	{
-		return songDao.selectAllSongInfo(show);
+		return songDao.selectAllSongInfo();
 	}
 
 	// 所有
 	@Override
 	public String selectAllSongs(DataTables dataTables)
 	{
+
+		System.out.println("dataTables.getSSearch() ========== " + dataTables.getSSearch());
 		String[] columns =
 		{ "songID", "songName" };// 页面对应的数据列
 		Map<String, Object> params = new HashMap<String, Object>();// 传给Mapper的参数
 		params.put("sSearch", dataTables.getSSearch());
-		params.put("iDisplayStart", Integer.parseInt(dataTables.getiDisplayStart()));
-		params.put("pageDisplayLength", Integer.parseInt(dataTables.getPageDisplayLength()));
-		params.put(dataTables.getsSortDir_0(), columns[Integer.parseInt(dataTables.getiSortCol_0())]);// 获取需要的列和对应的排序方式
+		params.put("iDisplayStart", dataTables.getStart());
+		params.put("pageDisplayLength", dataTables.getLength());
+		params.put(dataTables.getsSortDir_0(), columns[dataTables.getiSortCol_0()]);// 获取需要的列和对应的排序方式
 
 		List<Map<String, String>> logList = this.songDao.selectForSearch(params);// 返回的结果集
 		dataTables.setiTotalDisplayRecords(this.songDao.iTotalDisplayRecords(params));// 搜索结果总行数

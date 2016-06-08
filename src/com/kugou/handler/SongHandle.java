@@ -1,6 +1,7 @@
 package com.kugou.handler;
 
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +28,8 @@ import com.kugou.util.PackContents;
 @RequestMapping("/k")
 public class SongHandle
 {
+	@Autowired
+	private HttpServletRequest request;
 	@Resource
 	private SongService songService;
 	@Resource
@@ -65,20 +69,33 @@ public class SongHandle
 	{ RequestMethod.GET, RequestMethod.POST })
 	public String selectAllSongInfo(@RequestParam(value = "show") String show, Map<String, Object> map)
 	{
+		try
+		{
+			show = new String(show.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+		}
 		map.put("SongName", show);
-		List<Song> list = songService.selectAllSongInfo(show);
+		request.getSession().setAttribute("SongName", show);
+		List<Song> list = songService.selectAllSongInfo();
 		map.put("list", list);
 		return PackContents.REGISTER_PAGE;
 	}
 
 	// 分页查询
-	@RequestMapping(value = "/t", method = RequestMethod.GET)
-	public void selectAllSong(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value = "/t", method =
+	{ RequestMethod.GET, RequestMethod.POST })
+	public void selectAllSong(HttpServletResponse response)
 	{// 指定输出内容类型和编码
 		response.setContentType("text/html;charset=utf-8");
 		try
 		{
 			DataTables dataTables = DataTables.createDataTables(request);
+			if (dataTables.getSSearch() == null)
+			{
+				dataTables.setSSearch((String) request.getSession().getAttribute("SongName"));
+			}
 			PrintWriter out = response.getWriter(); // 获取输出流
 			out.print(this.songService.selectAllSongs(dataTables));// 返回结果
 			out.flush();

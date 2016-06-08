@@ -23,7 +23,7 @@ public interface SongService
 	public List<Song> selectAllSongMV();
 
 	// 搜索查询
-	public List<Song> selectAllSongInfo(String show);
+	public List<Song> selectAllSongInfo();
 
 	// 所有
 	public String selectAllSongs(DataTables dataTables);

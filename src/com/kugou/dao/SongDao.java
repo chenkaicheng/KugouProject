@@ -3,8 +3,6 @@ package com.kugou.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.kugou.pojo.Song;
 
 public interface SongDao
@@ -25,7 +23,7 @@ public interface SongDao
 	public List<Song> selectAllSongMV();
 
 	// 搜索查询
-	public List<Song> selectAllSongInfo(@Param(value = "SongName") String show);
+	public List<Song> selectAllSongInfo();
 
 	// 表记录总行数
 	public Integer iTotalRecords();

@@ -7,6 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID
 	</sql>
+
+	<sql id="allsonginfo">
+		select s.SongID ,s.SongName from
+
+	</sql>
 	<resultMap type="Song" id="SongResultMap">
 		<result column="SongID" property="SongID" />
 		<result column="SongName" property="SongName" />
@@ -50,46 +55,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="java.lang.String">
 		<include refid="allsong" />
 		from Song
-		<where>
-			<if test="SongName!=null and SongName!='' ">
-				SongName like CONCAT('%',#{SongName
-				,jdbcType=VARCHAR},'%' )
-			</if>
-		</where>
 	</select>
 
 	<!-- 表记录总行数 -->
 	<select id="iTotalRecords" resultType="java.lang.Integer">
-  	select count(SongID) from song
-  </select>
-  
-  <!-- 表搜索记录总行数 -->
-   <select id="iTotalDisplayRecords" resultType="java.lang.Integer">
-  	select count(s.SongID) from song s
-  	<if test="sSearch != '' " >
-  		<bind name="s_Search" value="sSearch"/>
-  		where
-  		CONCAT(s.SongID,s.SongName) like CONCAT('%','${s_Search}','%')
-    </if>
-  </select>
-  
-  <!-- datatables分页查询 -->
-  <select id="selectForSearch" resultMap="SongResultMap">
-  	select s.SongID ,s.SongName from song s
-  	<if test="sSearch != '' " >
-  		<bind name="s_Search" value="sSearch"/>
-  		where
-        CONCAT(s.SongID,s.SongName) like CONCAT('%','${s_Search}','%')
-    </if>
-    <if test="asc != null ">
-    	order by ${asc} asc
-    </if>
-    <if test="desc != null ">
-    	order by ${desc} desc
-    </if>
-   <if test="iDisplayStart != null" >
-  		limit #{iDisplayStart,jdbcType=INTEGER},#{pageDisplayLength,jdbcType=INTEGER}
-    </if>
-  </select>
-  
+		select count(SongID) from song
+		<where>
+			<if test="sSearch != null ">
+				INSTR(SongName,'${sSearch}') > 0
+			</if>
+		</where>
+	</select>
+
+	<!-- 表搜索记录总行数 -->
+	<select id="iTotalDisplayRecords" resultType="java.lang.Integer">
+		select count(s.SongID) from (select
+		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID from Song
+		where SongName like CONCAT('%','${SongName}','%') )as s
+		<if test="sSearch != null">
+			where
+			INSTR(concat(ifnull(s.SongID,''),ifnull(s.SongName,'')),'${sSearch}')
+			> 0
+		</if>
+	</select>
+
+	<!-- datatables分页查询 -->
+	<select id="selectForSearch" resultMap="SongResultMap">
+		select s.SongID ,s.SongName from(select
+		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID from Song
+		where SongName like CONCAT('%','${SongName}','%') )as s
+		<if test="sSearch != null ">
+			where
+			INSTR(concat(ifnull(s.SongID,''),ifnull(s.SongName,'')),'${sSearch}')
+			> 0
+		</if>
+		<if test="asc != null ">
+			order by ${asc} asc
+		</if>
+		<if test="desc != null ">
+			order by ${desc} desc
+		</if>
+		<if test="iDisplayStart != null">
+			limit
+			#{iDisplayStart,jdbcType=INTEGER},#{pageDisplayLength,jdbcType=INTEGER}
+		</if>
+	</select>
 </mapper>
