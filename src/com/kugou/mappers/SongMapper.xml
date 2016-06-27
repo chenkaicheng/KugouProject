@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.kugou.dao.SongDao">
 	<sql id="allsong">
 		select
-		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID
+		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID,SongLRC
 	</sql>
 
 	<sql id="allsonginfo">
@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="SongImg" property="SongImg" />
 		<result column="SongWords" property="SongWords" />
 		<result column="SongURL" property="SongURL" />
+		<result column="SongLRC" property="SongLRC" />
 	</resultMap>
 	<!-- 查询音乐盛典 -->
 	<select id="selectAllSongRadio" resultMap="SongResultMap">
@@ -51,8 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 搜索查询 -->
-	<select id="selectAllSongInfo" resultMap="SongResultMap"
-		parameterType="java.lang.String">
+	<select id="selectAllSongInfo" resultMap="SongResultMap">
 		<include refid="allsong" />
 		from Song
 	</select>
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(SongID) from song
 		<where>
 			<if test="sSearch != null ">
-				INSTR(SongName,'${sSearch}') > 0
+				SongName like CONCAT('%',#{sSearch,jdbcType=VARCHAR},'%' )
 			</if>
 		</where>
 	</select>
@@ -73,9 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID from Song
 		where SongName like CONCAT('%','${SongName}','%') )as s
 		<if test="sSearch != null">
-			where
-			INSTR(concat(ifnull(s.SongID,''),ifnull(s.SongName,'')),'${sSearch}')
-			> 0
+			where SongName like CONCAT('%',#{sSearch,jdbcType=VARCHAR},'%' )
 		</if>
 	</select>
 
@@ -85,9 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SongID,SongName,SongSinger,SongImg,SongWords,SongURL,AreaID from Song
 		where SongName like CONCAT('%','${SongName}','%') )as s
 		<if test="sSearch != null ">
-			where
-			INSTR(concat(ifnull(s.SongID,''),ifnull(s.SongName,'')),'${sSearch}')
-			> 0
+			where SongName like CONCAT('%',#{sSearch,jdbcType=VARCHAR},'%' )
 		</if>
 		<if test="asc != null ">
 			order by ${asc} asc
@@ -100,4 +96,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{iDisplayStart,jdbcType=INTEGER},#{pageDisplayLength,jdbcType=INTEGER}
 		</if>
 	</select>
+	
+	<!-- 根据id查询播放 -->
+	<select id="selectSongById" resultMap="SongResultMap" resultType="java.lang.Integer">
+		<include refid="allsong" />
+		from song where SongID=#{id}
+	</select>
+	
 </mapper>

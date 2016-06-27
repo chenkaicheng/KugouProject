@@ -77,6 +77,6 @@ var contextPath = "${pageContext.request.contextPath}";
 		}
 	});
 	</script>
-	<input type="button" name="SongName" id="SongName" value="${map['SongName']}">
+	<input type="button" onclick="javascript:history.go(-1)" value="返回">
 </body>
 </html>

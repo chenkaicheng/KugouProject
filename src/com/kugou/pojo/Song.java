@@ -2,8 +2,8 @@ package com.kugou.pojo;
 
 import java.io.Serializable;
 
-
-public class Song implements Serializable{
+public class Song implements Serializable
+{
 	/**
 	 * 
 	 */
@@ -14,51 +14,97 @@ public class Song implements Serializable{
 	private String SongImg;
 	private String SongWords;
 	private String SongURL;
+	private String SongLRC;
 	private Area AreaID;
-	public int getSongID() {
+
+	public int getSongID()
+	{
 		return SongID;
 	}
-	public void setSongID(int songID) {
+
+	public void setSongID(int songID)
+	{
 		SongID = songID;
 	}
-	public String getSongName() {
+
+	public String getSongName()
+	{
 		return SongName;
 	}
-	public void setSongName(String songName) {
+
+	public void setSongName(String songName)
+	{
 		SongName = songName;
 	}
-	public String getSongSinger() {
+
+	public String getSongSinger()
+	{
 		return SongSinger;
 	}
-	public void setSongSinger(String songSinger) {
+
+	public void setSongSinger(String songSinger)
+	{
 		SongSinger = songSinger;
 	}
-	public String getSongImg() {
+
+	public String getSongImg()
+	{
 		return SongImg;
 	}
-	public void setSongImg(String songImg) {
+
+	public void setSongImg(String songImg)
+	{
 		SongImg = songImg;
 	}
-	public String getSongWords() {
+
+	public String getSongWords()
+	{
 		return SongWords;
 	}
-	public void setSongWords(String songWords) {
+
+	public void setSongWords(String songWords)
+	{
 		SongWords = songWords;
 	}
-	public String getSongURL() {
+
+	public String getSongURL()
+	{
 		return SongURL;
 	}
-	public void setSongURL(String songURL) {
+
+	public void setSongURL(String songURL)
+	{
 		SongURL = songURL;
 	}
-	public Area getAreaID() {
+
+	public Area getAreaID()
+	{
 		return AreaID;
 	}
-	public void setAreaID(Area areaID) {
+
+	public void setAreaID(Area areaID)
+	{
 		AreaID = areaID;
 	}
-	public Song(int songID, String songName, String songSinger, String songImg,
-			String songWords, String songURL, Area areaID) {
+
+	public String getSongLRC()
+	{
+		return SongLRC;
+	}
+
+	public void setSongLRC(String songLRC)
+	{
+		SongLRC = songLRC;
+	}
+
+	public Song()
+	{
+		super();
+	}
+
+	public Song(int songID, String songName, String songSinger, String songImg, String songWords, String songURL,
+			String songLRC, Area areaID)
+	{
 		super();
 		SongID = songID;
 		SongName = songName;
@@ -66,24 +112,16 @@ public class Song implements Serializable{
 		SongImg = songImg;
 		SongWords = songWords;
 		SongURL = songURL;
+		SongLRC = songLRC;
 		AreaID = areaID;
 	}
-	
-	public Song() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 	@Override
-	public String toString() {
-		return "Song [SongID=" + SongID + ", SongName=" + SongName
-				+ ", SongSinger=" + SongSinger + ", SongImg=" + SongImg
-				+ ", SongWords=" + SongWords + ", SongURL=" + SongURL
-				+ ", AreaID=" + AreaID + "]";
+	public String toString()
+	{
+		return "Song [SongID=" + SongID + ", SongName=" + SongName + ", SongSinger=" + SongSinger + ", SongImg="
+				+ SongImg + ", SongWords=" + SongWords + ", SongURL=" + SongURL + ", SongLRC=" + SongLRC + ", AreaID="
+				+ AreaID + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

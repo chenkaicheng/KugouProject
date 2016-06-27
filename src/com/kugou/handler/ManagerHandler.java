@@ -40,6 +40,6 @@ public class ManagerHandler
 	public String insertManager(Manager manager) throws Exception
 	{
 		int result = managerService.insertManager(manager);
-		return result > 0 ? "Admin" : "Register";
+		return result > 0 ? "Admin.jsp" : "Register.jsp";
 	}
 }

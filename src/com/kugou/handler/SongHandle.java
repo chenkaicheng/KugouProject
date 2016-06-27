@@ -106,4 +106,13 @@ public class SongHandle
 		}
 	}
 
+	// 跳转到播放页面
+	@RequestMapping("/q")
+	public String selectSongById(Integer id, Map<String, Object> map)
+	{
+		Song song = songService.selectSongById(id);
+		map.put("song", song);
+		return PackContents.MUSIC_PAGE;
+
+	}
 }

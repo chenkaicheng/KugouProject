@@ -323,7 +323,7 @@
 							<c:forEach items="${songHeat }" var="song" begin="0"  end="9" varStatus="status">
 								<tr  <c:if test="${status.index % 2 != 0 }">class="hot_1_1_2_8"</c:if><c:if test="${status.index % 2 == 0 }">class="hot_1_1_2_9"</c:if>>
 									<td>
-									<a href="#" title="${song.songName }">
+									<a href="k/q?id=${song.songID  }" title="${song.songName }">
 										<span class="hot_1_1_2_1">
 											${status.index+1 }
 										</span>

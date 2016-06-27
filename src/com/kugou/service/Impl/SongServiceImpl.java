@@ -87,4 +87,10 @@ public class SongServiceImpl implements SongService
 		return logsListJSON.substring(1, (logsListJSON.length() - 1));// 截取掉两端的[]
 	}
 
+	@Override
+	public Song selectSongById(Integer id)
+	{
+		return songDao.selectSongById(id);
+	}
+
 }

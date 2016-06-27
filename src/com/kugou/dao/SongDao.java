@@ -33,4 +33,7 @@ public interface SongDao
 
 	// datatables分页查询
 	public List<Map<String, String>> selectForSearch(Map<String, Object> params);
+
+	//根据id查询播放
+	public Song selectSongById(Integer id);
 }

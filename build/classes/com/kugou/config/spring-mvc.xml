@@ -17,19 +17,16 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<mvc:resources mapping="/images/**" location="/images/" />
-	<mvc:resources mapping="/css/**" location="/css/" />
-	<mvc:resources mapping="/js/**" location="/js/" />
+
 	<mvc:annotation-driven></mvc:annotation-driven>
-	
+
 	<!-- 扫描静态资源 -->
 	<mvc:default-servlet-handler />
 
 	<!-- 视图解析器 -->
-	<bean id="viewResolver"
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp"></property>
+		<!-- <property name="suffix" value=".jsp"></property> -->
 	</bean>
-
 </beans>  

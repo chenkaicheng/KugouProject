@@ -28,4 +28,6 @@ public interface SongService
 	// 所有
 	public String selectAllSongs(DataTables dataTables);
 
+	//根据id查询
+	public Song selectSongById(Integer id);
 }
